@@ -1,0 +1,48 @@
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    volumes:
+      - .:/app
+      - cargo-cache:/root/.cargo/registry
+      - target-cache:/app/target
+    environment:
+      - RUST_BACKTRACE=1
+    command: >
+      bash -c "
+        mkdir -p /run/dbus &&
+        dbus-daemon --system --fork &&
+        sleep 1 &&
+        ModemManager --debug &
+        sleep 3 &&
+        cargo test -p mmrs
+      "
+
+  shell:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    volumes:
+      - .:/app
+      - cargo-cache:/root/.cargo/registry
+      - target-cache:/app/target
+    environment:
+      - RUST_BACKTRACE=1
+    command: >
+      bash -c "
+        mkdir -p /run/dbus &&
+        dbus-daemon --system --fork &&
+        sleep 1 &&
+        ModemManager --debug &
+        sleep 3 &&
+        /bin/bash
+      "
+    stdin_open: true
+    tty: true
+
+volumes:
+  cargo-cache:
+  target-cache:
