@@ -4,6 +4,7 @@ All notable changes to the `modemmanager` crate will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-02
 ### Added
 
 - High-level `ModemManager` entry point with modem enumeration, primary-modem
@@ -16,3 +17,4 @@ All notable changes to the `modemmanager` crate will be documented in this file.
   `Bearer`, `BearerConfig`, `BearerStats`, `Ip4Config`, `IpType`,
   `ModemError`, and the `Result` alias. All public structs and enums are
   `#[non_exhaustive]`; `BearerConfig` ships with `with_*` builder methods.
+
