@@ -37,15 +37,13 @@ docker compose run shell
 If you just want quick builds/tests without the full ModemManager environment:
 
 ```bash
-docker run --rm mmrs-lib cargo test -p mmrs --lib
+docker run --rm mmrs-lib cargo test --lib
 docker run --rm -it -v $(pwd):/app mmrs-lib   # mounts local changes
 ```
 
-If you decide to run the shell, ensure you run all commands from within the mmrs directory, not root.
-
 ```bash
-cargo test -p mmrs           # run library tests
-cargo build -p mmrs          # build the library
+cargo test                   # run library tests
+cargo build                  # build the library
 cargo check                  # you get the point...
 ```
 

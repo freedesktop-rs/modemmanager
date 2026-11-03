@@ -29,8 +29,8 @@ python3 scripts/bump_version.py 0.2.0 beta
 
 ### What it does
 
-1. Updates `version` in `mmrs/Cargo.toml`
-2. Updates `mmrs/CHANGELOG.md` (moves Unreleased section to new version)
+1. Updates `version` in `Cargo.toml`
+2. Updates `CHANGELOG.md` (moves Unreleased section to new version)
 
 ## Releasing
 

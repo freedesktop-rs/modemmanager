@@ -3,8 +3,8 @@
 Version bumping script for mmrs.
 
 This script updates version numbers:
-- mmrs/Cargo.toml
-- mmrs/CHANGELOG.md
+- Cargo.toml
+- CHANGELOG.md
 
 Usage:
     python3 scripts/bump_version.py <version> <release_type>
@@ -159,7 +159,7 @@ def main():
     success = True
 
     # Update Cargo.toml
-    cargo_toml_path = project_root / 'mmrs' / 'Cargo.toml'
+    cargo_toml_path = project_root / 'Cargo.toml'
     if not cargo_toml_path.exists():
         print(f"✗ File not found: {cargo_toml_path}")
         success = False
@@ -168,10 +168,10 @@ def main():
             success = False
 
     # Update CHANGELOG.md
-    changelog_path = project_root / 'mmrs' / 'CHANGELOG.md'
+    changelog_path = project_root / 'CHANGELOG.md'
     if not changelog_path.exists():
         print(f"✗ File not found: {changelog_path}")
-        print("  Create mmrs/CHANGELOG.md with an [Unreleased] section first")
+        print("  Create CHANGELOG.md with an [Unreleased] section first")
         success = False
     else:
         if not update_changelog(changelog_path, version, release_type):

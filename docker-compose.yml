@@ -17,7 +17,7 @@ services:
         sleep 1 &&
         ModemManager --debug &
         sleep 3 &&
-        cargo test -p mmrs
+        cargo test
       "
 
   shell:

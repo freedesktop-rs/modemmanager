@@ -97,9 +97,7 @@ jobs:
       matrix:
         include:
           - target: x86_64-unknown-linux-gnu
-            packages: mmrs
           - target: aarch64-unknown-linux-gnu
-            packages: mmrs
     steps:
       - uses: actions/checkout@v7
 
@@ -128,12 +126,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ matrix.target }}-
 
-      - name: Build ${{ matrix.packages }}
-        run: |
-          for package in ${{ matrix.packages }}; do
-            echo "Building $package for ${{ matrix.target }}"
-            cargo build --release --target ${{ matrix.target }} --package $package
-          done
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
         env:
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
           PKG_CONFIG_ALLOW_CROSS: 1

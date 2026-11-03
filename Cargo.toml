@@ -1,26 +1,35 @@
-[workspace]
-members = ["mmrs"]
-
-resolver = "3"
-
-[workspace.package]
+[package]
+name = "mmrs"
+version = "0.1.0"
+authors = ["Akrm Al-Hakimi <akrm@cachebag.sh>"]
 edition = "2024"
+rust-version = "1.90.0"
+description = "A Rust library for ModemManager over D-Bus"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/freedesktop-rs/mmrs"
+documentation = "https://docs.rs/mmrs"
+keywords = ["modemmanager", "dbus", "cellular", "linux", "modem"]
+categories = ["api-bindings", "asynchronous"]
+readme = "README.md"
+include = ["src/**", "/README.md", "/LICENSE-*"]
 
-[workspace.lints.rust]
-unused = { level = "warn", priority = -1 }
-
-[workspace.lints.clippy]
-# Allow some common patterns
-too_many_arguments = "allow"
-type_complexity = "allow"
-
-[workspace.dependencies]
-# Core dependencies
+[dependencies]
 zbus = "5.16.0"
 zvariant = "5.12.0"
 log = "0.4.33"
 thiserror = "2.0.18"
 futures = "0.3.32"
-mmrs = { path = "mmrs", version = "0.1" }
+
+[package.metadata.docs.rs]
+all-features = true
+targets = ["x86_64-unknown-linux-gnu"]
+
+[lints.rust]
+unused = { level = "warn", priority = -1 }
+
+[lints.clippy]
+too_many_arguments = "allow"
+type_complexity = "allow"
+
+[lib]
+bench = false
