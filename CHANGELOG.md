@@ -8,9 +8,9 @@ All notable changes to the `modemmanager` crate will be documented in this file.
 
 - High-level `ModemManager` entry point with modem enumeration, primary-modem
   connection helpers, SIM PIN operations, signal queries, and per-modem
-  `ModemScope` support (#402).
+  `ModemScope` support.
 - `ConnectionStatus` snapshot model for `ModemManager::status` and
-  `ModemScope::status` (#402).
+  `ModemScope::status`.
 - Public model types for the ModemManager domain under `modemmanager::models`:
   `Modem`, `ModemState`, `AccessTechnology`, `Sim`, `SimLockState`,
   `Bearer`, `BearerConfig`, `BearerStats`, `Ip4Config`, `IpType`,

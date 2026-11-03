@@ -7,7 +7,7 @@
 
 An async-first Rust API for [ModemManager](https://modemmanager.org/) over [D-Bus](https://dbus.freedesktop.org/doc/dbus-specification.html). The goal is to provide a safe and simple high-level API for managing cellular modems on Linux systems, built on [`zbus`](https://docs.rs/zbus) for reliable D-Bus communication.
 
-`modemmanager` is the ModemManager counterpart to [`nmrs`](https://github.com/cachebag/nmrs) (NetworkManager) — same author, same design philosophy: typed errors, async throughout, no leaking of raw D-Bus internals into the public API.
+`modemmanager` is the ModemManager counterpart to [`nmrs`](https://github.com/freedesktop-rs/nmrs) (NetworkManager) — same author, same design philosophy: typed errors, async throughout, no leaking of raw D-Bus internals into the public API.
 
 ## Sample usage
 

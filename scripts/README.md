@@ -38,14 +38,13 @@ python3 scripts/bump_version.py 0.2.0 beta
 # 1. Bump version and update changelog
 python3 scripts/bump_version.py 0.2.0 stable
 
-# 2. Review and commit
+# 2. Review, commit on a branch, open a PR to master
 git diff
 git commit -am "chore(release): prepare 0.2.0 release"
 
-# 3. Push to master and tag
-git push origin master
+# 3. After the PR merges, tag master
 git tag v0.2.0
 git push origin v0.2.0
 
-# CI automatically publishes to crates.io
+# The publish workflow pushes to crates.io and creates the GitHub release
 ```
