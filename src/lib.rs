@@ -45,10 +45,7 @@
 //! ```
 
 pub mod api;
-pub mod core;
-pub mod dbus;
-pub mod monitoring;
-pub mod types;
+mod dbus;
 
 /// Public data types for ModemManager (modems, SIMs, bearers, errors).
 ///
