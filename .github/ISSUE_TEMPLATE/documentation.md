@@ -1,17 +1,11 @@
 ---
 name: Documentation
-about: Documentation reporting for modemmanager.
-title: "[DOCS]"
-labels: ''
-assignees: ''
-
+about: Something is missing, wrong, or unclear in the docs
+labels: documentation
 ---
 
-**Which documentation needs to be updated?**
-i.e. `README.md`
+**Where** (file, docs.rs page, or item)
 
-**Does documentation need to _added_? If so, what?**
+**What is wrong or missing**
 
-**Does documentation need to _removed_? If so, what?**
-
-**Relevant PR or Issue # (if any)**
+**Related PR or issue**
