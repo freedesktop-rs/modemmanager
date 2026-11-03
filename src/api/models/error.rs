@@ -6,12 +6,12 @@ use super::sim::SimLockState;
 
 /// Errors that can occur during ModemManager operations.
 ///
-/// All fallible operations in `mmrs` return [`Result<T, ModemError>`].
+/// All fallible operations in `modemmanager` return [`Result<T, ModemError>`].
 ///
 /// # Examples
 ///
 /// ```rust
-/// use mmrs::{ModemError, SimLockState};
+/// use modemmanager::{ModemError, SimLockState};
 ///
 /// fn handle(err: ModemError) {
 ///     match err {

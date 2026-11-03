@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help improve mmrs
+about: Create a report to help improve modemmanager
 title: "[BUG] Add a concise overview here"
 labels: ''
 assignees: ''

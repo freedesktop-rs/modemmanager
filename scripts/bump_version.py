@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Version bumping script for mmrs.
+Version bumping script for modemmanager.
 
 This script updates version numbers:
 - Cargo.toml
@@ -76,7 +76,7 @@ def update_changelog(file_path: Path, version: str, release_type: str) -> bool:
             flags=re.DOTALL
         )
 
-        git_tag = f"mmrs-v{version_tag}"
+        git_tag = f"v{version_tag}"
 
         # Update the [Unreleased] comparison link
         unreleased_link_pattern = r'\[Unreleased\]:\s*https://github\.com/[^/]+/[^/]+/compare/[^\s]+\.\.\.HEAD'
@@ -97,7 +97,7 @@ def update_changelog(file_path: Path, version: str, release_type: str) -> bool:
 
         if not prev_tag:
             # Fallback to a reasonable default
-            prev_tag = "mmrs-v0.1.0"
+            prev_tag = "v0.1.0"
 
         # Create the new version link
         link_label = version if release_type == "stable" else version_tag
@@ -153,7 +153,7 @@ def main():
     script_dir = Path(__file__).parent
     project_root = script_dir.parent
 
-    print(f"Preparing mmrs release: {version}-{release_type}")
+    print(f"Preparing modemmanager release: {version}-{release_type}")
     print("=" * 50)
 
     success = True
@@ -186,13 +186,13 @@ def main():
         else:
             version_tag = f"{version}-{release_type}"
 
-        git_tag = f"mmrs-v{version_tag}"
+        git_tag = f"v{version_tag}"
 
-        print(f"✓ Successfully prepared mmrs release {version}-{release_type}")
+        print(f"✓ Successfully prepared modemmanager release {version}-{release_type}")
         print()
         print("Next steps:")
         print(f"  1. Review the changes: git diff")
-        print(f"  2. Commit: git commit -am 'chore(mmrs): prepare {version_tag} release'")
+        print(f"  2. Commit: git commit -am 'chore(release): prepare {version_tag} release'")
         print(f"  3. Push and open PR to master")
         print(f"  4. After merge, create tag: git tag {git_tag} && git push origin {git_tag}")
         print(f"  5. CI will automatically publish to crates.io and create GitHub release")

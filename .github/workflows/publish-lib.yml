@@ -3,7 +3,7 @@ name: Publish Library
 on:
   push:
     tags:
-      - 'mmrs-v*'
+      - 'v*'
 
 jobs:
   publish:
@@ -17,9 +17,9 @@ jobs:
       - name: Parse version from tag
         id: version
         run: |
-          TAG=${GITHUB_REF#refs/tags/mmrs-v}
+          TAG=${GITHUB_REF#refs/tags/v}
           echo "VERSION=$TAG" >> $GITHUB_ENV
-          echo "Publishing mmrs version: $TAG"
+          echo "Publishing modemmanager version: $TAG"
 
       - name: Install dependencies
         run: |
@@ -32,7 +32,7 @@ jobs:
 
       - name: Verify version matches tag
         run: |
-          CARGO_VERSION=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[] | select(.name == "mmrs") | .version')
+          CARGO_VERSION=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[] | select(.name == "modemmanager") | .version')
           if [ "$CARGO_VERSION" != "${{ env.VERSION }}" ]; then
             echo "Error: Cargo.toml version ($CARGO_VERSION) doesn't match tag version (${{ env.VERSION }})"
             exit 1
@@ -47,12 +47,12 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: mmrs-v${{ env.VERSION }}
-          name: mmrs ${{ env.VERSION }}
+          tag_name: v${{ env.VERSION }}
+          name: modemmanager ${{ env.VERSION }}
           body: |
-            ## mmrs ${{ env.VERSION }}
+            ## modemmanager ${{ env.VERSION }}
 
-            Published to [crates.io](https://crates.io/crates/mmrs/${{ env.VERSION }})
+            Published to [crates.io](https://crates.io/crates/modemmanager/${{ env.VERSION }})
 
             See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md) for details.
           draft: false

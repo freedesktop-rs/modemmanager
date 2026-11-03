@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the `mmrs` crate will be documented in this file.
+All notable changes to the `modemmanager` crate will be documented in this file.
 
 ## [Unreleased]
 
@@ -11,7 +11,7 @@ All notable changes to the `mmrs` crate will be documented in this file.
   `ModemScope` support (#402).
 - `ConnectionStatus` snapshot model for `ModemManager::status` and
   `ModemScope::status` (#402).
-- Public model types for the ModemManager domain under `mmrs::models`:
+- Public model types for the ModemManager domain under `modemmanager::models`:
   `Modem`, `ModemState`, `AccessTechnology`, `Sim`, `SimLockState`,
   `Bearer`, `BearerConfig`, `BearerStats`, `Ip4Config`, `IpType`,
   `ModemError`, and the `Result` alias. All public structs and enums are

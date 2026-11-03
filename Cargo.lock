@@ -445,7 +445,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "mmrs"
+name = "modemmanager"
 version = "0.1.0"
 dependencies = [
  "futures",

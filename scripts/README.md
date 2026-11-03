@@ -1,6 +1,6 @@
 # Scripts
 
-Utility scripts for managing mmrs releases.
+Utility scripts for managing modemmanager releases.
 
 ## `bump_version.py`
 
@@ -20,10 +20,10 @@ python3 scripts/bump_version.py <version> <release_type>
 ### Examples
 
 ```bash
-# Prepare mmrs 0.2.0 stable release
+# Prepare modemmanager 0.2.0 stable release
 python3 scripts/bump_version.py 0.2.0 stable
 
-# Prepare mmrs 0.2.0 beta release
+# Prepare modemmanager 0.2.0 beta release
 python3 scripts/bump_version.py 0.2.0 beta
 ```
 
@@ -40,12 +40,12 @@ python3 scripts/bump_version.py 0.2.0 stable
 
 # 2. Review and commit
 git diff
-git commit -am "chore(mmrs): prepare 0.2.0 release"
+git commit -am "chore(release): prepare 0.2.0 release"
 
 # 3. Push to master and tag
 git push origin master
-git tag mmrs-v0.2.0
-git push origin mmrs-v0.2.0
+git tag v0.2.0
+git push origin v0.2.0
 
 # CI automatically publishes to crates.io
 ```

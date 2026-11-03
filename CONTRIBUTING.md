@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for wanting to contribute to `mmrs`!
+Thank you for wanting to contribute to `modemmanager`!
 
 I'm fairly accepting to all PR's, only with a couple caveats:
 
@@ -9,7 +9,7 @@ I'm fairly accepting to all PR's, only with a couple caveats:
 
 ## Requirements
 
-**To run or develop mmrs you need:**
+**To run or develop modemmanager you need:**
 
 - Rust (stable) via `rustup`
 - A running `ModemManager` instance (or a modem simulator, e.g. `mm.py`/`libqmi`'s test tools)
@@ -19,7 +19,7 @@ I also provide a `Dockerfile` you can build if you don't use Linux and use macOS
 **To build the image:**
 
 ```bash
-docker build -t mmrs-lib .
+docker build -t modemmanager-lib .
 ```
 
 **To run tests:**
@@ -37,8 +37,8 @@ docker compose run shell
 If you just want quick builds/tests without the full ModemManager environment:
 
 ```bash
-docker run --rm mmrs-lib cargo test --lib
-docker run --rm -it -v $(pwd):/app mmrs-lib   # mounts local changes
+docker run --rm modemmanager-lib cargo test --lib
+docker run --rm -it -v $(pwd):/app modemmanager-lib   # mounts local changes
 ```
 
 ```bash

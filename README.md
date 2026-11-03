@@ -1,23 +1,23 @@
-# <p align="center"> mmrs 🦀
+# <p align="center"> modemmanager 🦀
 
-[![Crates.io](https://img.shields.io/crates/v/mmrs)](https://crates.io/crates/mmrs)
-[![Documentation](https://docs.rs/mmrs/badge.svg)](https://docs.rs/mmrs)
+[![Crates.io](https://img.shields.io/crates/v/modemmanager)](https://crates.io/crates/modemmanager)
+[![Documentation](https://docs.rs/modemmanager/badge.svg)](https://docs.rs/modemmanager)
 [![CI](https://github.com/freedesktop-rs/mmrs/actions/workflows/ci.yml/badge.svg)](https://github.com/freedesktop-rs/mmrs/actions/workflows/ci.yml)
-[![License](https://img.shields.io/crates/l/mmrs)](LICENSE-MIT)
+[![License](https://img.shields.io/crates/l/modemmanager)](LICENSE-MIT)
 
 An async-first Rust API for [ModemManager](https://modemmanager.org/) over [D-Bus](https://dbus.freedesktop.org/doc/dbus-specification.html). The goal is to provide a safe and simple high-level API for managing cellular modems on Linux systems, built on [`zbus`](https://docs.rs/zbus) for reliable D-Bus communication.
 
-`mmrs` is the ModemManager counterpart to [`nmrs`](https://github.com/cachebag/nmrs) (NetworkManager) — same author, same design philosophy: typed errors, async throughout, no leaking of raw D-Bus internals into the public API.
+`modemmanager` is the ModemManager counterpart to [`nmrs`](https://github.com/cachebag/nmrs) (NetworkManager) — same author, same design philosophy: typed errors, async throughout, no leaking of raw D-Bus internals into the public API.
 
 ## Sample usage
 
 ### Listing modems
 
 ```rust,no_run
-use mmrs::ModemManager;
+use modemmanager::ModemManager;
 
 #[tokio::main]
-async fn main() -> mmrs::Result<()> {
+async fn main() -> modemmanager::Result<()> {
     let mm = ModemManager::new().await?;
 
     for modem in mm.list_modems().await? {
@@ -35,10 +35,10 @@ async fn main() -> mmrs::Result<()> {
 ### Connecting the primary modem
 
 ```rust,no_run
-use mmrs::{BearerConfig, IpType, ModemManager};
+use modemmanager::{BearerConfig, IpType, ModemManager};
 
 #[tokio::main]
-async fn main() -> mmrs::Result<()> {
+async fn main() -> modemmanager::Result<()> {
     let mm = ModemManager::new().await?;
 
     // Quick path: just an APN
@@ -59,10 +59,10 @@ async fn main() -> mmrs::Result<()> {
 ### SIM PIN handling
 
 ```rust,no_run
-use mmrs::{ModemError, ModemManager};
+use modemmanager::{ModemError, ModemManager};
 
 #[tokio::main]
-async fn main() -> mmrs::Result<()> {
+async fn main() -> modemmanager::Result<()> {
     let mm = ModemManager::new().await?;
 
     match mm.unlock_pin("1234").await {
@@ -79,10 +79,10 @@ async fn main() -> mmrs::Result<()> {
 ### Multi-modem systems
 
 ```rust,no_run
-use mmrs::ModemManager;
+use modemmanager::ModemManager;
 
 #[tokio::main]
-async fn main() -> mmrs::Result<()> {
+async fn main() -> modemmanager::Result<()> {
     let mm = ModemManager::new().await?;
 
     for modem in mm.list_modems().await? {
@@ -97,7 +97,7 @@ async fn main() -> mmrs::Result<()> {
 
 ## Documentation
 
-Complete API documentation: [docs.rs/mmrs](https://docs.rs/mmrs)
+Complete API documentation: [docs.rs/modemmanager](https://docs.rs/modemmanager)
 
 ## Roadmap / Implementation Status
 

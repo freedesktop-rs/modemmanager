@@ -1,5 +1,5 @@
 [package]
-name = "mmrs"
+name = "modemmanager"
 version = "0.1.0"
 authors = ["Akrm Al-Hakimi <akrm@cachebag.sh>"]
 edition = "2024"
@@ -7,7 +7,7 @@ rust-version = "1.90.0"
 description = "A Rust library for ModemManager over D-Bus"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/freedesktop-rs/mmrs"
-documentation = "https://docs.rs/mmrs"
+documentation = "https://docs.rs/modemmanager"
 keywords = ["modemmanager", "dbus", "cellular", "linux", "modem"]
 categories = ["api-bindings", "asynchronous"]
 readme = "README.md"

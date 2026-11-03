@@ -7,8 +7,8 @@
 //! # Modules
 //!
 //! - [`models`] re-exports every public data type under [`crate::api::models`].
-//!   The same types are re-exported at the crate root, so `mmrs::ModemState`,
-//!   `mmrs::models::ModemState`, and `mmrs::api::models::ModemState` refer to
+//!   The same types are re-exported at the crate root, so `modemmanager::ModemState`,
+//!   `modemmanager::models::ModemState`, and `modemmanager::api::models::ModemState` refer to
 //!   the same item.
 //!
 //! # Quick reference
@@ -22,9 +22,9 @@
 //! # Example
 //!
 //! ```no_run
-//! use mmrs::{AccessTechnology, BearerConfig, IpType, ModemManager, ModemState};
+//! use modemmanager::{AccessTechnology, BearerConfig, IpType, ModemManager, ModemState};
 //!
-//! # async fn example() -> mmrs::Result<()> {
+//! # async fn example() -> modemmanager::Result<()> {
 //! let mm = ModemManager::new().await?;
 //! let modems = mm.list_modems().await?;
 //! # let _ = modems;

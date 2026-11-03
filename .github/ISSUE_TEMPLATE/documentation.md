@@ -1,6 +1,6 @@
 ---
 name: Documentation
-about: Documentation reporting for mmrs.
+about: Documentation reporting for modemmanager.
 title: "[DOCS]"
 labels: ''
 assignees: ''
