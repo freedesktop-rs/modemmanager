@@ -43,7 +43,7 @@ pub enum ModemError {
         context: String,
         /// The underlying `zbus` error.
         #[source]
-        source: zbus::Error,
+        source: Box<zbus::Error>,
     },
 
     /// ModemManager reported no managed modems.
@@ -153,7 +153,7 @@ mod tests {
     fn dbus_operation_chains_source() {
         let err = ModemError::DbusOperation {
             context: "calling Enable".into(),
-            source: zbus::Error::InvalidReply,
+            source: Box::new(zbus::Error::InvalidReply),
         };
         let rendered = err.to_string();
         assert!(rendered.contains("calling Enable"));
