@@ -3,9 +3,6 @@
 //! This module contains low-level D-Bus proxy definitions for communicating
 //! with ModemManager over the system bus.
 
-// Re-exports are consumed by core/api layers that are not yet implemented.
-#![allow(unused_imports)]
-
 mod bearer;
 mod manager;
 mod modem;

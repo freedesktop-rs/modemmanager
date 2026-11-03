@@ -3,137 +3,73 @@ name: CI
 on:
   push:
     branches: [master]
-    paths-ignore:
-      - '*.md'
-      - 'LICENSE-MIT'
-      - 'LICENSE-APACHE'
   pull_request:
     branches: [master]
-    paths-ignore:
-      - '*.md'
-      - 'LICENSE-MIT'
-      - 'LICENSE-APACHE'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   CARGO_TERM_COLOR: always
-  RUST_BACKTRACE: 1
+  CARGO_INCREMENTAL: 0
+  CARGO_PROFILE_DEV_DEBUG: 0
+  CARGO_PROFILE_TEST_DEBUG: 0
 
 jobs:
-  format:
-    name: Format Check
+  fmt:
+    name: Format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
+
       - run: cargo fmt --all -- --check
 
-  clippy:
-    name: Clippy Lints
+  check:
+    name: Clippy & Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            pkg-config \
-            libdbus-1-dev
 
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
 
-      - uses: actions/cache@v6
+      - uses: Swatinem/rust-cache@v2
         with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-clippy-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-clippy-
+          save-if: ${{ github.ref == 'refs/heads/master' }}
 
-      - run: cargo clippy --all-targets --all-features -- -D warnings
+      - name: Clippy
+        run: cargo clippy --locked --all-targets --all-features -- -D warnings
 
-  test:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
+      - name: Unit tests
+        run: cargo test --locked --lib --all-features
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            pkg-config \
-            libdbus-1-dev
-
-      - uses: dtolnay/rust-toolchain@stable
-
-      - uses: actions/cache@v6
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-test-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-test-
-
-      - name: Run unit tests
-        run: cargo test --lib --all-features --workspace
-
-      - name: Run doc tests
-        run: cargo test --doc --all-features --workspace
+      - name: Doc tests
+        run: cargo test --locked --doc --all-features
 
   build:
-    name: Build (${{ matrix.target }})
+    name: Build (aarch64-unknown-linux-gnu)
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target: x86_64-unknown-linux-gnu
-            packages: mmrs
-          - target: aarch64-unknown-linux-gnu
-            packages: mmrs
     steps:
       - uses: actions/checkout@v7
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            pkg-config \
-            libdbus-1-dev
-
       - name: Install cross-compilation tools
-        if: matrix.target == 'aarch64-unknown-linux-gnu'
-        run: sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+        run: sudo apt-get install -y gcc-aarch64-linux-gnu
 
       - uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.target }}
+          targets: aarch64-unknown-linux-gnu
 
-      - uses: actions/cache@v6
+      - uses: Swatinem/rust-cache@v2
         with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-build-${{ matrix.target }}-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ matrix.target }}-
+          shared-key: aarch64
+          save-if: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: Build ${{ matrix.packages }}
-        run: |
-          for package in ${{ matrix.packages }}; do
-            echo "Building $package for ${{ matrix.target }}"
-            cargo build --release --target ${{ matrix.target }} --package $package
-          done
+      - run: cargo build --locked --release --target aarch64-unknown-linux-gnu
         env:
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
-          PKG_CONFIG_ALLOW_CROSS: 1

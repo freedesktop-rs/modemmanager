@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for wanting to contribute to `mmrs`!
+Thank you for wanting to contribute to `modemmanager`!
 
 I'm fairly accepting to all PR's, only with a couple caveats:
 
@@ -9,45 +9,31 @@ I'm fairly accepting to all PR's, only with a couple caveats:
 
 ## Requirements
 
-**To run or develop mmrs you need:**
-
 - Rust (stable) via `rustup`
-- A running `ModemManager` instance (or a modem simulator, e.g. `mm.py`/`libqmi`'s test tools)
+- Linux with ModemManager only if you want to exercise the library against a real modem
 
-I also provide a `Dockerfile` you can build if you don't use Linux and use macOS instead.
-
-**To build the image:**
+Unit and documentation tests run anywhere; they never contact ModemManager.
 
 ```bash
-docker build -t mmrs-lib .
+cargo fmt --all -- --check
+cargo clippy --locked --all-targets --all-features -- -D warnings
+cargo test --locked --lib --all-features
+cargo test --locked --doc --all-features
 ```
 
-**To run tests:**
+## Docker
+
+The `Dockerfile` builds the crate with ModemManager installed, for working on
+a non-Linux host:
 
 ```bash
-docker compose run test
+docker build -t modemmanager-lib .
+docker compose run --rm test
+docker compose run --rm shell
 ```
 
-**To run an interactive shell:**
-
-```bash
-docker compose run shell
-```
-
-If you just want quick builds/tests without the full ModemManager environment:
-
-```bash
-docker run --rm mmrs-lib cargo test -p mmrs --lib
-docker run --rm -it -v $(pwd):/app mmrs-lib   # mounts local changes
-```
-
-If you decide to run the shell, ensure you run all commands from within the mmrs directory, not root.
-
-```bash
-cargo test -p mmrs           # run library tests
-cargo build -p mmrs          # build the library
-cargo check                  # you get the point...
-```
+There is no modem in the container, so this only proves the crate builds and
+its unit tests pass next to a running daemon.
 
 ## When your branch falls behind `master`
 
@@ -65,25 +51,10 @@ fix(#24): fixed bug where something was happening
 
 ## Tests
 
-All tests must pass before a merge takes place.
-
-### Ensure ModemManager is running
-
-```bash
-sudo systemctl start ModemManager
-```
-
-### Test everything
-
-```bash
-cargo test --all-features
-```
-
-Most unit tests do not require a real modem or ModemManager instance — they operate on
-decoded values and D-Bus property maps directly. Tests that do require a live modem
-should skip gracefully when ModemManager or hardware is unavailable, following the same
-pattern as [`nmrs`](https://github.com/cachebag/nmrs)'s integration tests.
+All unit and documentation tests must pass before a merge takes place. Tests
+operate on decoded values and D-Bus property maps directly; do not add tests
+that need a live modem and silently pass when one is absent.
 
 ## License
 
-All contributions fall under the [MIT License](https://github.com/freedesktop-rs/mmrs?tab=MIT-1-ov-file).
+All contributions are dual-licensed under [MIT](./LICENSE-MIT) or [Apache-2.0](./LICENSE-APACHE), at your option.

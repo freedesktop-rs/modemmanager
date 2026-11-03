@@ -2,14 +2,14 @@
 
 ## Supported Versions
 
-We take security seriously and provide security updates for the latest version of mmrs.
-We strongly recommend keeping your mmrs dependencies up to date.
+We take security seriously and provide security updates for the latest version of modemmanager.
+We strongly recommend keeping your modemmanager dependencies up to date.
 
 ## Reporting a Vulnerability
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-If you discover a security vulnerability in mmrs or any of the related crates, please report it privately by emailing
+If you discover a security vulnerability in modemmanager or any of the related crates, please report it privately by emailing
 **akrm@cachebag.sh**.
 
 Please include the following information in your report:
@@ -22,7 +22,7 @@ Please include the following information in your report:
 
 ### What constitutes a security vulnerability?
 
-For mmrs, security vulnerabilities may include but are not limited to:
+For modemmanager, security vulnerabilities may include but are not limited to:
 
 - **Credential exposure**: Leaking SIM PINs/PUKs, bearer passwords, or other sensitive connection data through logs, errors, or memory
 - **D-Bus injection**: Malicious D-Bus messages that could manipulate modem or bearer state
@@ -30,7 +30,7 @@ For mmrs, security vulnerabilities may include but are not limited to:
 - **Information disclosure**: Exposing IMEI, ICCID, IMSI, or connection details to unauthorized processes
 - **Input validation failures**: Improper handling of malformed APNs, PINs, or configuration data leading to undefined behavior
 - **Race conditions**: Timing vulnerabilities in modem/bearer state management that could lead to security issues
-- **Dependency vulnerabilities**: Security issues in upstream crates (zbus, etc.) that affect mmrs
+- **Dependency vulnerabilities**: Security issues in upstream crates (zbus, etc.) that affect modemmanager
 
 ## Response Timeline
 
@@ -66,13 +66,13 @@ We request that you:
 Published security advisories will be available through:
 
 - GitHub Security Advisories on the
-  [mmrs repository](https://github.com/freedesktop-rs/mmrs/security/advisories)
+  [modemmanager repository](https://github.com/freedesktop-rs/mmrs/security/advisories)
 - [RustSec Advisory Database](https://rustsec.org/)
 - Release notes and changelog entries
 
 ## Recognition
 
-We appreciate the security research community's efforts to improve the security of mmrs. With
+We appreciate the security research community's efforts to improve the security of modemmanager. With
 your permission, we will acknowledge your contribution in:
 
 - Security advisories
@@ -83,11 +83,11 @@ If you prefer to remain anonymous, please let us know in your report.
 
 ## Scope
 
-This security policy covers mmrs.
+This security policy covers modemmanager.
 
 ## Additional Resources
 
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Rust Security Policy](https://www.rust-lang.org/policies/security)
 
-Thank you for helping keep mmrs and the Rust ecosystem secure!
+Thank you for helping keep modemmanager and the Rust ecosystem secure!

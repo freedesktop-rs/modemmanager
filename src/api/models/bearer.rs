@@ -22,7 +22,7 @@ use std::net::Ipv4Addr;
 /// # Example
 ///
 /// ```rust
-/// use mmrs::IpType;
+/// use modemmanager::IpType;
 ///
 /// assert_eq!(IpType::from_raw(1), IpType::Ipv4);
 /// assert!(IpType::Ipv4v6.is_dual_stack());
@@ -110,7 +110,7 @@ impl fmt::Display for IpType {
 /// # Example
 ///
 /// ```rust
-/// use mmrs::Ip4Config;
+/// use modemmanager::Ip4Config;
 ///
 /// fn print_address(cfg: &Ip4Config) {
 ///     if let Some(addr) = cfg.address {
@@ -150,7 +150,7 @@ pub struct Ip4Config {
 /// # Example
 ///
 /// ```rust
-/// use mmrs::BearerStats;
+/// use modemmanager::BearerStats;
 ///
 /// fn throughput_kib_per_s(stats: &BearerStats) -> f64 {
 ///     if stats.duration_seconds == 0 {
@@ -185,13 +185,13 @@ pub struct BearerStats {
 /// Snapshot of a single packet-data bearer owned by a modem.
 ///
 /// Mirrors the `org.freedesktop.ModemManager1.Bearer` D-Bus interface.
-/// Instances are produced by the higher-level `mmrs` APIs; the example
+/// Instances are produced by the higher-level `modemmanager` APIs; the example
 /// below shows the inspection-only side of the type.
 ///
 /// # Example
 ///
 /// ```rust
-/// use mmrs::Bearer;
+/// use modemmanager::Bearer;
 ///
 /// fn summary(bearer: &Bearer) -> String {
 ///     let state = if bearer.connected { "up" } else { "down" };
@@ -226,7 +226,7 @@ pub struct Bearer {
 /// # Example
 ///
 /// ```rust
-/// use mmrs::{BearerConfig, IpType};
+/// use modemmanager::{BearerConfig, IpType};
 ///
 /// let cfg = BearerConfig::new("internet")
 ///     .with_user("user")
@@ -259,7 +259,7 @@ impl BearerConfig {
     /// # Example
     ///
     /// ```rust
-    /// use mmrs::BearerConfig;
+    /// use modemmanager::BearerConfig;
     ///
     /// let cfg = BearerConfig::new("hologram");
     /// assert_eq!(cfg.apn, "hologram");

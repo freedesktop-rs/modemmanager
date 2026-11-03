@@ -1,4 +1,4 @@
-//! Public-facing API surface for the `mmrs` crate.
+//! Public-facing API surface for the `modemmanager` crate.
 //!
 //! Exposes the high-level [`ModemManager`] entry point, scoped
 //! [`ModemScope`] operations, and the [`models`] sub-module.

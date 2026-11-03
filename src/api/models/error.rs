@@ -6,12 +6,12 @@ use super::sim::SimLockState;
 
 /// Errors that can occur during ModemManager operations.
 ///
-/// All fallible operations in `mmrs` return [`Result<T, ModemError>`].
+/// All fallible operations in `modemmanager` return [`Result<T, ModemError>`].
 ///
 /// # Examples
 ///
 /// ```rust
-/// use mmrs::{ModemError, SimLockState};
+/// use modemmanager::{ModemError, SimLockState};
 ///
 /// fn handle(err: ModemError) {
 ///     match err {
@@ -43,7 +43,7 @@ pub enum ModemError {
         context: String,
         /// The underlying `zbus` error.
         #[source]
-        source: zbus::Error,
+        source: Box<zbus::Error>,
     },
 
     /// ModemManager reported no managed modems.
@@ -153,7 +153,7 @@ mod tests {
     fn dbus_operation_chains_source() {
         let err = ModemError::DbusOperation {
             context: "calling Enable".into(),
-            source: zbus::Error::InvalidReply,
+            source: Box::new(zbus::Error::InvalidReply),
         };
         let rendered = err.to_string();
         assert!(rendered.contains("calling Enable"));

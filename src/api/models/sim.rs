@@ -9,12 +9,12 @@ use std::fmt;
 /// Captures the most commonly used properties exposed by the
 /// `org.freedesktop.ModemManager1.Sim` interface at a single point in time.
 /// Construction is intentionally controlled — instances are produced by
-/// the higher-level `mmrs` APIs and consumed by callers via field access.
+/// the higher-level `modemmanager` APIs and consumed by callers via field access.
 ///
 /// # Example
 ///
 /// ```rust
-/// use mmrs::Sim;
+/// use modemmanager::Sim;
 ///
 /// fn describe(sim: &Sim) -> String {
 ///     format!("{} (active={}, iccid={})", sim.operator_name, sim.active, sim.iccid)
@@ -67,7 +67,7 @@ pub struct Sim {
 /// # Example
 ///
 /// ```rust
-/// use mmrs::SimLockState;
+/// use modemmanager::SimLockState;
 ///
 /// assert_eq!(SimLockState::from_raw(2), SimLockState::SimPin);
 /// assert!(SimLockState::SimPin.requires_pin());

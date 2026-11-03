@@ -1,18 +1,13 @@
 ---
 name: Bug report
-about: Create a report to help improve mmrs
-title: "[BUG] Add a concise overview here"
-labels: ''
-assignees: ''
-
+about: Something behaves incorrectly
+labels: bug
 ---
 
-**Describe the bug**
-<!--A clear and concise description of what the bug is.-->
+**What happened**
 
-**What should happen?:**
-<!--What is supposed to happen instead?-->
+**What should have happened**
 
+**ModemManager version and modem** (`mmcli --version`, `mmcli -L`)
 
 **Additional context**
-<!--Add any other context about the problem here.-->

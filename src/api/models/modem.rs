@@ -33,7 +33,7 @@ use std::fmt;
 /// # Example
 ///
 /// ```rust
-/// use mmrs::ModemState;
+/// use modemmanager::ModemState;
 ///
 /// assert_eq!(ModemState::from_raw(8), ModemState::Registered);
 /// assert!(ModemState::from_raw(11).is_connected());
@@ -217,7 +217,7 @@ const AT_3GPP: u32 = AT_2G | AT_3G | AT_4G | AT_5G;
 /// # Example
 ///
 /// ```rust
-/// use mmrs::AccessTechnology;
+/// use modemmanager::AccessTechnology;
 ///
 /// let tech = AccessTechnology::from(0x4000); // MM_MODEM_ACCESS_TECHNOLOGY_LTE
 /// assert!(tech.has_lte());
@@ -437,13 +437,13 @@ impl fmt::Display for AccessTechnology {
 /// `org.freedesktop.ModemManager1.Modem` D-Bus interface. The values are
 /// captured at a single point in time; use the live D-Bus proxy or the
 /// monitoring API for change notifications. Construction is intentionally
-/// controlled — instances are produced by the higher-level `mmrs` APIs
+/// controlled — instances are produced by the higher-level `modemmanager` APIs
 /// and consumed by callers via field access.
 ///
 /// # Example
 ///
 /// ```rust
-/// use mmrs::Modem;
+/// use modemmanager::Modem;
 ///
 /// fn signal_bar(modem: &Modem) -> &'static str {
 ///     match modem.signal_quality {
